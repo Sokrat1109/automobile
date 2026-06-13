@@ -3,6 +3,9 @@ from owners_window import OwnersWindow
 from search_window import SearchWindow
 from reports_window import ReportsWindow
 from stats_window import StatsWindow
+from countries_window import CountriesWindow
+from brands_window import BrandsWindow
+from body_type_window import BodyTypeWindow
 
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget,
@@ -36,6 +39,9 @@ class MainWindow(QMainWindow):
         self.search_window = None
         self.reports_window = None
         self.stats_window = None
+        self.countries_window = None
+        self.brands_window = None
+        self.body_type_window = None
 
         self.setWindowTitle("Музей автомобилей")
         self.setGeometry(200, 200, 900, 600)
@@ -70,6 +76,18 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.btn_owner)
         self.btn_owner.clicked.connect(self.open_owners)
 
+        self.btn_countries = QPushButton("Страны")
+        layout.addWidget(self.btn_countries)
+        self.btn_countries.clicked.connect(self.open_countries)
+
+        self.btn_brands = QPushButton("Бренды")
+        layout.addWidget(self.btn_brands)
+        self.btn_brands.clicked.connect(self.open_brands)
+
+        self.btn_body_type = QPushButton("Типы кузова")
+        layout.addWidget(self.btn_body_type)
+        self.btn_body_type.clicked.connect(self.open_body_type)
+
         self.btn_search = QPushButton("Поиск")
         layout.addWidget(self.btn_search)
         self.btn_search.clicked.connect(self.open_search)
@@ -93,6 +111,9 @@ class MainWindow(QMainWindow):
         for btn in [
             self.btn_auto,
             self.btn_owner,
+            self.btn_brands,
+            self.btn_countries,
+            self.btn_body_type,
             self.btn_search,
             self.btn_reports,
             self.btn_stats,
@@ -148,6 +169,18 @@ class MainWindow(QMainWindow):
     def open_owners(self):
         self.owner_window = OwnersWindow()
         self.owner_window.show()
+
+    def open_countries(self):
+        self.countries_window = CountriesWindow()
+        self.countries_window.show()
+
+    def open_brands(self):
+        self.brands_window = BrandsWindow()
+        self.brands_window.show()
+
+    def open_body_type(self):
+        self.body_type_window = BodyTypeWindow()
+        self.body_type_window.show()
 
     def open_search(self):
         self.search_window = SearchWindow()
